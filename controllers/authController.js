@@ -11,34 +11,23 @@ const loginProcess = async (req,res) =>{
         const clientIp = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
         const cleanIp = clientIp.replace(/^.*:/, '');
         if(result.length>0){
-            res.status(200).json({
-                message:"Logged In Successfully",
-                token: token,
-                // ip:cleanIp
-            });
+            res.sendResponse(200,'Logged In Successfully',{token: token});
         }
         else{
-            res.status(203).json({
-                statuscode:203,
-                message:"Invalid UserName (or) Password",
-            });
+            res.sendResponse(203,'Invalid UserName (or) Password');
         }
     }
     catch(error){
-        res.send(error.message);
+        res.sendResponse(500,error.message);
     }
 }
 
 const sendRegOtp = async (req,res) =>{
     try{
         const result = await sendOtp(req.knex,req.body);
-        res.status(200).json({
-            statuscode:200,
-            message:"OTP Sent Successfully",
-            data:{'otp':result}
-        })
+        res.sendResponse(200,"OTP Sent Successfully",{'otp':result})
     }catch(error){
-       res.status(500).send(error.message);
+        res.sendResponse(500,error.message);
     }
 }
 
@@ -46,20 +35,14 @@ const verifyRegOtp = async (req,res) => {
     try{
         const result = await verifyOTP(req.knex,req.body);
         if(result.length>0){
-            res.status(200).json({
-                statuscode:200,
-                message:'OTP Verified Successfully',
-            })
+            res.sendResponse(200,'OTP Verified Successfully');
         }
         else{
-            res.status(203).json({
-                statuscode:203,
-                message:'Incorrect OTP',
-            })
+            res.sendResponse(203,error,'Incorrect OTP');
         }
         
     }catch(error){
-        res.status(500).send(error.message);
+        res.sendResponse(500,error.message);
     }
 }
 

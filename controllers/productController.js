@@ -3,56 +3,36 @@ const { getProductDetails, addProduct,getCategory, getSubCategory, getNavMenu, g
 const fetchProductList = async (req, res) => {
   try {
     const result = await getProductDetails(req.knex);
-    res.status(200).json(
-      {
-        statuscode: 200,
-        message: "Success",
-        data: result
-      }
-    );
+    res.sendResponse(200,'Success',{ data: result});
   } catch (err) {
-    res.status(500).send(err.message);
+    res.sendResponse(500,err.message);
   }
 }
 
 const newProduct = async (req, res) => {
   try {
     await addProduct(req.knex, req.body);
-    res.status(201).json(
-      {
-        statuscode: 201,
-        message: "Successfully New Product Added",
-      }
-    );
+    res.sendResponse(201,'Successfully New Product Added');
   } catch (err) {
-    res.status(500).send(err.message);
+    res.sendResponse(500,err.message);
   }
 }
 
 const productCategory = async (req, res) => {
   try {
     const result = await getCategory(req.knex);
-    res.status(200).json({
-      statuscode:200,
-      message:"Success",
-      data:result
-    })
+    res.sendResponse(200,'Success',{ data: result});
   } catch (error) {
-    res.status(500).send(error.message);
+    res.sendResponse(500,err.message);
   }
 }
 
 const productSubCategory = async (req,res) => {
   try {
     const result = await getSubCategory(req.knex,req.body);
-    res.status(200).json({
-      statuscode:200,
-      message:'Success',
-      data:result
-    })
+    res.sendResponse(200,'Success',{ data: result});
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error.message);
+    res.sendResponse(500,err.message);
   }
 }
 
@@ -60,24 +40,19 @@ const productSubCategory = async (req,res) => {
 const getCustNavMenu = async(req,res) => {
   try {
     const CustNavMenu = await getNavMenu(req.knex);
-    res.status(200).json({
-      statuscode:200,
-      data:CustNavMenu
-    })
+    res.sendResponse(200,'Success',{ data: CustNavMenu});
   } catch (error) {
-    res.status(500).json(error);
+    res.sendResponse(500,err.message);
+
   }
 }
 
 const fetchProductListId= async(req,res)=>{
   try {
     const product_byId = await getProduct_byId(req.knex,req.body);
-    res.status(200).json({
-      statuscode:200,
-      data:product_byId
-    })
+    res.sendResponse(200,'Success',{ data: product_byId});
   } catch (error) {
-    res.status(500).json(error.message);
+    res.sendResponse(500,error.message);
   }
 }
 

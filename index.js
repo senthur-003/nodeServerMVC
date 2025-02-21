@@ -9,7 +9,8 @@ const upload = multer({ storage: multer.memoryStorage() });
 const bodyParser = require('body-parser');
 const cors = require ('cors');
 const axios = require('axios');
-const requestIp = require('request-ip')
+const requestIp = require('request-ip');
+const sendResponse = require('./sendResponse');
 
 require('dotenv').config();
 
@@ -24,6 +25,7 @@ app.use(requestIp.mw());
 
 app.use(bodyParser.json())
 app.use(cors());
+app.use(sendResponse);
 
 
 const userRoutes = require('./routes/userRoutes');

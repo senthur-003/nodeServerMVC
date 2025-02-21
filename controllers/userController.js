@@ -1,12 +1,12 @@
 const knex = require('knex');
-const { getAdminUserDetails, getUserProfile, addUserProfile, addNewUser, getUserMenu,getProduct_byId  } = require('../models/userModel');
+const { getAdminUserDetails, getUserProfile, addUserProfile, addNewUser, getUserMenu } = require('../models/userModel');
 
 const fetchAdminUserDetails = async (req, res) => {
   try {
     const result = await getAdminUserDetails(req.knex, req.body);
     res.json(result);
   } catch (err) {
-    res.status(500).send(err.message);
+    res.sendResponse(500, err.message);
   }
 };
 
@@ -20,7 +20,7 @@ const fetchUserProfile = async (req, res) => {
       data: result
     })
   } catch (err) {
-    res.status(500).json(err.message);
+    res.sendResponse(500, err.message);
   }
 };
 
@@ -40,7 +40,7 @@ const addUser_Profile = async (req, res) => {
       });
     }
   } catch (err) {
-    res.status(500).json(err);
+    res.sendResponse(500, err.message);
   }
 };
 
@@ -62,7 +62,7 @@ const addUser = async (req, res) => {
     }
 
   } catch (err) {
-    res.status(500).json(err);
+    res.sendResponse(500, err.message);
   }
 }
 
@@ -73,13 +73,10 @@ const fetchMenuList = async (req, res) => {
       statuscode: 200,
       data: menu
     })
-  } catch (error) {
-    res.status(500).json(err);
+  } catch (err) {
+    res.sendResponse(500, err.message);
   }
 }
 
-
-
-
-
+    
 module.exports = { fetchAdminUserDetails, fetchUserProfile, addUser_Profile, addUser, fetchMenuList };
