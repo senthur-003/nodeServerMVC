@@ -3,10 +3,10 @@ const knexDB = require('knex');
 const knexConfig = {
     client: 'mssql', // or 'mysql', 'sqlite3', etc.
     connection: {
-        host: 'ip',
-        user: 'username',
-        password: 'password',
-        database: 'database name'
+        host: '10.0.4.12',
+        user: 'Info',
+        password: 'Test@1234',
+        database: 'TCS_ONLINE_DEMO'
     },
     options: {
         encrypt: true,
