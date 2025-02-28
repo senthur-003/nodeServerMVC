@@ -27,21 +27,7 @@ const updateUserProfile = async (knex, req) => {
       DOB: req.dob,
       GENDER: req.gender,
     });
-    // return await knex('PROFILE_DETAILS').insert({
-    //   FIRST_NAME: req.firstname,
-    //   LAST_NAME: req.lastname,
-    //   USER_NAME: req.userName,
-    //   PHONE_NUMBER: req.phone,
-    //   USER_EMAIL: req.email,
-    //   DOOR_NO: req.doorNo,
-    //   STREET: req.street,
-    //   CITY: req.city,
-    //   STATE: req.state,
-    //   COUNTRY: req.country,
-    //   POSTAL_CODE: req.pincode,
-    //   DOB: req.dob,
-    //   GENDER: req.gender,
-    // });
+    
   } catch (error) {
       return error;
   }
