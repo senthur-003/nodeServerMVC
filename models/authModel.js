@@ -1,7 +1,4 @@
-const { default: axios } = require("axios");
 const knex = require("knex");
-
-
 
 const login = async (knex, req) => {
     try {
@@ -20,7 +17,7 @@ const userLogin = async (knex, req) => {
         result = await knex('Users')
             .select('*')
             .where('UserRefNo', req.user)
-            .orWhere('UserName',req.user)
+            .orWhere('UserName', req.user)
             .where('Password', req.password);
         return result;
     } catch (error) {
@@ -32,11 +29,6 @@ const sendOtp = async (knex, req) => {
     const NewOtp = Math.floor(100000 + Math.random() * 900000);
 
     try {
-
-        // return response  = await axios.post('https://opentextingonline.com/api/send_sms',{
-        //     number: req.phoneNumber,
-        //     message: NewOtp
-        // });
         await knex('AUTHOTP').insert({
             VERIFY_TYPE: req.verficationType,
             VERIFY_VALUE: req.verficationValue,
