@@ -7,7 +7,7 @@ const multer = require('multer');
 const upload = multer({ storage: multer.memoryStorage() });
 
 const bodyParser = require('body-parser');
-const cors = require ('cors');
+const cors = require('cors');
 const axios = require('axios');
 const requestIp = require('request-ip');
 const sendResponse = require('./sendResponse');
@@ -34,10 +34,10 @@ const authRoutes = require('./routes/authRoutes');
 
 
 //  routes here
-app.use('/',userRoutes);
-app.use('/user',upload.array(),userRoutes);
-app.use('/product',upload.array(),productRoutes);
-app.use('/auth',upload.array(),authRoutes)
+app.use('', userRoutes);
+app.use('/user', upload.array(), userRoutes);
+app.use('/product', upload.array(), productRoutes);
+app.use('/auth', upload.array(), authRoutes)
 
 
 
